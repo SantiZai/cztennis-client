@@ -1,0 +1,21 @@
+.btn-handle {
+    position: absolute;
+    z-index: 1;
+}
+
+.navigation {
+    position: absolute;
+    transition: all .5s ease;
+    background-color: gray;
+    letter-spacing: .05rem;
+}
+
+.open {
+    top: 0%;
+    opacity: 1;
+}
+
+.close {
+    top: -25%;
+    opacity: 0;
+}
