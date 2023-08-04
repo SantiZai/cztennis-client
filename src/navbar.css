@@ -5,7 +5,7 @@
 
 .navigation {
     position: absolute;
-    transition: all .5s ease;
+    transition: all .7s ease;
     background-color: gray;
     letter-spacing: .05rem;
 }
@@ -16,6 +16,6 @@
 }
 
 .close {
-    top: -25%;
+    top: -100%;
     opacity: 0;
 }

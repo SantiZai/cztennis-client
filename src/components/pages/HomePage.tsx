@@ -1,5 +1,7 @@
+import "../../app.css";
+
 const HomePage = () => {
-    return <div>aaa</div>;
+    return <div className="container-home w-full h-full"></div>;
 };
 
 export default HomePage;
