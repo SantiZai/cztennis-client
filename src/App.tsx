@@ -16,7 +16,7 @@ const App = () => {
             storageKey="vite-ui-theme"
         >
             <BrowserRouter>
-                <div className="container-all flex flex-col w-screen h-screen">
+                <div className="flex flex-col w-screen h-screen">
                     <NavBar />
                     <Routes>
                         <Route

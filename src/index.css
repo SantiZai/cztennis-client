@@ -13,10 +13,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
  
-    --card: 0 0% 100%;
+    --card: 22, 100%, 35%;
     --card-foreground: 222.2 84% 4.9%;
  
-    --border: 214.3 31.8% 91.4%;
+    --border: 22, 100%, 15%;
     --input: 22, 100%, 20%;
  
     --primary: 22, 100%, 60%;
