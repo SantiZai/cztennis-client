@@ -7,6 +7,7 @@ import NavBar from "./pcomponents/containers/NavBar";
 import Strings from "./pcomponents/pages/Strings";
 import SingleString from "./pcomponents/pages/SingleString";
 import { ThemeProvider } from "@/components/theme-provider";
+import Cart from "./pcomponents/pages/Cart";
 
 const App = () => {
     return (
@@ -37,6 +38,10 @@ const App = () => {
                         <Route
                             path="auth"
                             element={<AuthPage />}
+                        />
+                        <Route 
+                            path="order"
+                            element={<Cart />}
                         />
                         <Route
                             path="not-found"

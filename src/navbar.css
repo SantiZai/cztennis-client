@@ -1,5 +1,12 @@
-.btn-handle {
+.handle-nav {
     position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+.handle-dark {
+    position: absolute;
+    left: 0;
     z-index: 1;
 }
 

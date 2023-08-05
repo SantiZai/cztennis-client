@@ -1,3 +1,11 @@
 .container-home {
-    background: url('/cz-page-without-bg.svg') center / cover no-repeat;
+    background: center / cover no-repeat;
+}
+
+.home-dark {
+    background-image: url("bg-home-light.svg");
+}
+
+.home-light {
+    background-image: url("bg-home-dark.svg");
 }

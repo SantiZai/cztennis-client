@@ -11,8 +11,10 @@ const Strings = () => {
     }, [strings]);
 
     return (
-        <div className="w-full flex flex-col px-4">
-            <h2 className="text-center text-2xl">Cuerdas disponibles</h2>
+        <div className="w-full h-3/4 flex flex-col px-4">
+            <div>
+                <h2 className="text-center text-2xl">Cuerdas disponibles</h2>
+            </div>
             <div className="w-full flex flex-col justify-center items-center gap-2">
                 {strings.map((prod: Product) => {
                     return (
@@ -21,7 +23,10 @@ const Strings = () => {
                             className="w-2/3 flex flex-col items-center gap-2"
                         >
                             <h2 className="text-center text-lg">{prod.name}</h2>
-                            <img src={prod.image} className="w-2/3" />
+                            <img
+                                src={prod.image}
+                                className="w-2/3"
+                            />
                             <button>
                                 <Link to={prod.id.toString()}>View</Link>
                             </button>

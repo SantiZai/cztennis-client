@@ -10,10 +10,10 @@ const NavBar = () => {
     };
 
     return (
-        <div className="w-full flex flex-col justify-start text-center">
-            <div className="w-full flex justify-end">
+        <div className="w-full flex flex-col text-center">
+            <div className="w-full flex justify-between">
                 <div
-                    className="btn-handle bg-red-200 flex justify-end my-2 mx-3 p-2"
+                    className="handle-nav flex justify-end my-2 mx-3 p-4"
                     onClick={handleOpen}
                 >
                     <h2>X</h2>
