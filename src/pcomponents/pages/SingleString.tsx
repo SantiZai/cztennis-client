@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../utils/interfaces";
 import { bringString } from "../../utils/services";
 import { Button } from "@/components/ui/button";
+import { CartContext } from "@/utils/CartProvider";
 
 const SingleString = () => {
     const [prod, setProd] = useState<Product>({
@@ -14,12 +15,17 @@ const SingleString = () => {
         size: 0,
         stock: 0,
     });
-
+    const { cart, setCart } = useContext(CartContext);
+    
     const { id } = useParams();
+
+    const addToCart = (prod: Product) => {
+        setCart([...cart, prod])
+    }
 
     useEffect(() => {
         bringString(Number(id)).then((res) => setProd(res));
-    }, [prod]);
+    }, []);
 
     //TODO: crear fondo de pelota de tenis en alguna esquina de la pantalla, debe ser distinto segun el tema
     return (
@@ -40,7 +46,7 @@ const SingleString = () => {
                 </div>
             </div>
             <div className="mt-4">
-                <Button>Agregar al carrito</Button>
+                <Button onClick={() => addToCart(prod)}>Agregar al carrito</Button>
             </div>
         </div>
     );

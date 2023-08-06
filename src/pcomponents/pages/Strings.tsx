@@ -15,7 +15,7 @@ const Strings = () => {
 
     useEffect(() => {
         bringStrings().then((res) => setStrings(res));
-    }, [strings]);
+    }, []);
 
     return (
         <div className="w-full h-full flex">

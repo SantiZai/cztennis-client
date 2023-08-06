@@ -7,3 +7,8 @@ export interface Product {
     price: number;
     stock: number;
 }
+
+export interface CartContextType {
+    cart: Product[];
+    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+}
