@@ -10,6 +10,7 @@ import Cart from "./pcomponents/pages/Cart";
 import { ThemeProvider } from "@/components/theme-provider";
 import CartProvider from "./utils/CartProvider";
 import AuthProvider from "./utils/AuthProvider";
+import { Toaster } from "./components/ui/toaster";
 
 const App = () => {
     return (
@@ -58,6 +59,7 @@ const App = () => {
                             </Routes>
                         </div>
                     </BrowserRouter>
+                    <Toaster />
                 </ThemeProvider>
             </CartProvider>
         </AuthProvider>

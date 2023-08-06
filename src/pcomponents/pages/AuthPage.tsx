@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import Auth from "../pures/Auth";
+import { useTheme } from "@/components/theme-provider";
+import "../../auth.css";
 
 const AuthPage = () => {
-    const [signup, setSignup] = useState<boolean>(false);
-
-    const handleSignup = () => setSignup(!signup);
-
-    return <div>
-        <Auth signup={signup} />
-        <Button onClick={handleSignup}>{signup ? "Acceder" : "Registrarse"}</Button>
-    </div>;
+    const { theme } = useTheme();
+    return (
+        <div
+            className={`container-auth w-full h-full ${
+                theme === "dark" ? "auth-dark" : "auth-light"
+            }`}
+        >
+            <Auth />
+        </div>
+    );
 };
 
 export default AuthPage;

@@ -9,7 +9,7 @@ const HomePage = () => {
     return (
         <div
             className={`container-home w-full h-full ${
-                theme == "dark" ? "home-dark" : "home-light"
+                theme === "dark" ? "home-dark" : "home-light"
             }`}
         >
             <div className="w-full h-full flex flex-col justify-end">

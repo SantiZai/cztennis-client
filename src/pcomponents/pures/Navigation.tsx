@@ -3,6 +3,8 @@ import { ModeToggle } from "@/components/mode-toggle";
 import "../../navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "@/utils/AuthProvider";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 interface Props {
     isOpen: boolean;
@@ -10,7 +12,13 @@ interface Props {
 }
 
 const Navigation = ({ isOpen, handleNav }: Props) => {
-    const { loggedIn } = useContext(AuthContext);
+    const { loggedIn, setLoggedIn } = useContext(AuthContext);
+
+    const logOut = () => {
+        handleNav();
+        setLoggedIn(false);
+        localStorage.removeItem("user");
+    };
 
     return (
         <div
@@ -44,6 +52,27 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                     <Link to="order">Pedido</Link>
                 </li>
             </ul>
+            {loggedIn && (
+                <div className="w-full flex flex-col items-start gap-4">
+                    <div className="flex flex-col items-start gap-1">
+                        <Avatar>
+                            <AvatarImage src="https://i.pinimg.com/280x280_RS/52/da/85/52da850c6903a93646c6a3bc1dc2729a.jpg"></AvatarImage>
+                        </Avatar>
+                        <span>Nombre</span>
+                    </div>
+                    {/* TODO: corregir que al hacer click cerca del boton se ejecuta el onClick (capaz creando un componente para el boton puede funcionar) */}
+                    <div>
+                        <Button
+                            variant="link"
+                            size="nothing"
+                            spacing="topBottom"
+                            onClick={logOut}
+                        >
+                            <Link to="auth">Cerrar sesión</Link>
+                        </Button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

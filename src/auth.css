@@ -1,0 +1,11 @@
+.container-auth {
+    background: center / cover no-repeat;
+}
+
+.auth-dark {
+    background-image: url("bg-auth-dark.svg");
+}
+
+.auth-light {
+    /*background-image: url("bg-auth-dark.svg");*/
+}

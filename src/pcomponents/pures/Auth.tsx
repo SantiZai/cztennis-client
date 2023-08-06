@@ -2,10 +2,10 @@ import * as Yup from "yup";
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import { Button } from "@/components/ui/button";
 import ErrorMessageCustom from "./ErrorMessageCustom";
-
-interface Props {
-    signup: boolean;
-}
+import { useContext, useState } from "react";
+import { AuthContext } from "@/utils/AuthProvider";
+import { createUser, login } from "@/utils/services";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Values {
     fullname: string;
@@ -35,20 +35,42 @@ const getSchema = (signup: boolean) => {
     return formSchema;
 };
 
-const Auth = (props: Props) => {
-    const handleSubmit = (
+const Auth = () => {
+    const [signup, setSignup] = useState<boolean>(false);
+
+    const { setLoggedIn } = useContext(AuthContext);
+
+    const { toast } = useToast();
+
+    const handleSubmit = async (
         values: Values,
         { setSubmitting }: FormikHelpers<Values>
     ) => {
-        if (props.signup) {
-            console.log("Creando cuenta", values);
+        if (signup) {
+            try {
+                const res = await createUser(values.fullname, values.password);
+                if (res.status === 200) {
+                    toast({
+                        title: "Usuario creado",
+                        description: `Bienvenido ${values.fullname}`,
+                    });
+                    setSignup(false);
+                }
+            } catch (err) {
+                console.error(err);
+            }
         } else {
-            console.log("Iniciando sesión", values);
-        }
-        setTimeout(() => {
-            console.log("aa");
+            try {
+                const res = await login(values.fullname, values.password);
+                if ((res.status = 200)) {
+                    setLoggedIn(true);
+                    localStorage.setItem("user", res.data.id);
+                }
+            } catch (err) {
+                console.error(err);
+            }
             setSubmitting(false);
-        }, 1000);
+        }
     };
 
     const initialValues = {
@@ -58,7 +80,7 @@ const Auth = (props: Props) => {
     };
 
     return (
-        <div className="w-3/4 mx-auto">
+        <div className="w-3/4 h-screen flex flex-col justify-end py-10 mx-auto">
             <Formik
                 initialValues={initialValues}
                 onSubmit={
@@ -69,50 +91,71 @@ const Auth = (props: Props) => {
                         }: FormikHelpers<Values & { confirm: string }>
                     ) => void
                 }
-                validationSchema={getSchema(props.signup)}
+                validationSchema={getSchema(signup)}
                 enableReinitialize
             >
-                {({ touched, errors, isSubmitting }) => (
-                    <Form>
+                {({ touched, errors, isSubmitting, resetForm }) => (
+                    <Form className="mb-20">
                         <div className="flex flex-col mb-4">
-                            <label htmlFor="fullname">Nombre completo: </label>
+                            <label htmlFor="fullname">Nombre completo</label>
                             <Field
                                 name="fullname"
                                 type="text"
+                                style={{ color: "black" }}
                             />
                             {errors.fullname && touched.fullname && (
                                 <ErrorMessageCustom name="fullname" />
                             )}
                         </div>
                         <div className="flex flex-col mb-4">
-                            <label htmlFor="password">Contraseña: </label>
+                            <label htmlFor="password">Contraseña</label>
                             <Field
                                 name="password"
                                 type="text"
+                                style={{ color: "black" }}
                             />
                             {errors.password && touched.password && (
                                 <ErrorMessageCustom name="password" />
                             )}
                         </div>
-                        {props.signup && (
+                        {signup && (
                             <div className="flex flex-col mb-4">
                                 <label htmlFor="confirm">Confirm: </label>
                                 <Field
                                     name="confirm"
                                     type="text"
+                                    style={{ color: "black" }}
                                 />
                                 {errors.confirm && touched.confirm && (
                                     <ErrorMessageCustom name="confirm" />
                                 )}
                             </div>
                         )}
-                        <Button type="submit">
-                            {isSubmitting
-                                ? "submitting"
-                                : props.signup
-                                ? "Registrarse"
-                                : "Acceder"}
-                        </Button>
+                        <div className="w-full flex justify-between">
+                            <Button
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting
+                                    ? "submitting"
+                                    : signup
+                                    ? "Registrarse"
+                                    : "Acceder"}
+                            </Button>
+                            <Button
+                                variant="link"
+                                size="nothing"
+                                spacing="topBottom"
+                                type="button"
+                                onClick={() => {
+                                    resetForm();
+                                    setSignup(!signup);
+                                }}
+                                disabled={isSubmitting}
+                            >
+                                {signup ? "Acceder" : "Registrarse"}
+                            </Button>
+                        </div>
                     </Form>
                 )}
             </Formik>

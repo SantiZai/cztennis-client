@@ -11,7 +11,7 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 const AuthProvider = (props: Props) => {
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+    const [loggedIn, setLoggedIn] = useState<boolean>(Boolean(localStorage.getItem("user")));
 
     return (
         <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
