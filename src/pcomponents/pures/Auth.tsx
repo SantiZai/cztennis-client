@@ -1,8 +1,16 @@
 import * as Yup from "yup";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Button } from "@/components/ui/button";
+import ErrorMessageCustom from "./ErrorMessageCustom";
 
 interface Props {
     signup: boolean;
+}
+
+interface Values {
+    fullname: string;
+    password: string;
+    confirm?: string;
 }
 
 const formSchema = Yup.object().shape({
@@ -25,29 +33,64 @@ const formSchema = Yup.object().shape({
 });
 
 const Auth = (props: Props) => {
+    const handleSubmit = (values: Values) => {
+        console.log(values);
+    };
+
     return (
-        <div>
+        <div className="w-3/4 mx-auto">
             <Formik
                 initialValues={{
-                    username: "",
+                    fullname: "",
                     password: "",
                     confirm: "",
                 }}
+                onSubmit={(values) => handleSubmit(values)}
                 validationSchema={formSchema}
             >
-                <Form>
-                    <label htmlFor="fullname">Nombre completo: </label>
-                    <Field name="fullname" type="text" />
-                    {props.signup ? (
-                        <div>
-                            <h2>Registrarse</h2>
+                {({ touched, errors, isSubmitting }) => (
+                    <Form>
+                        <div className="flex flex-col mb-4">
+                            <label htmlFor="fullname">Nombre completo: </label>
+                            <Field
+                                name="fullname"
+                                type="text"
+                            />
+                            {errors.fullname && touched.fullname && (
+                                <ErrorMessageCustom
+                                    name="fullname"
+                                />
+                            )}
                         </div>
-                    ) : (
-                        <div>
-                            <h2>Acceder</h2>
+                        <div className="flex flex-col mb-4">
+                            <label htmlFor="password">Contraseña: </label>
+                            <Field
+                                name="password"
+                                type="text"
+                            />
+                            {errors.password && touched.password && (
+                                <ErrorMessageCustom
+                                    name="password"
+                                />
+                            )}
                         </div>
-                    )}
-                </Form>
+                        <div className="flex flex-col mb-4">
+                            <label htmlFor="confirm">Confirm: </label>
+                            <Field
+                                name="confirm"
+                                type="text"
+                            />
+                            {errors.confirm && touched.confirm && (
+                                <ErrorMessageCustom
+                                    name="confirm"
+                                />
+                            )}
+                        </div>
+                        <Button type="submit">
+                            {props.signup ? "Registrarse" : "Acceder"}
+                        </Button>
+                    </Form>
+                )}
             </Formik>
         </div>
     );
