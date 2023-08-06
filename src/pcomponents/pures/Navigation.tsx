@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { ModeToggle } from "@/components/mode-toggle";
 import "../../navbar.css";
+import { useContext } from "react";
+import { AuthContext } from "@/utils/AuthProvider";
 
 interface Props {
     isOpen: boolean;
@@ -8,6 +10,8 @@ interface Props {
 }
 
 const Navigation = ({ isOpen, handleNav }: Props) => {
+    const { loggedIn } = useContext(AuthContext);
+
     return (
         <div
             className={`navigation w-full h-full flex flex-col gap-2 px-4 text-xl font-semibold ${
@@ -27,12 +31,15 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                 <li onClick={handleNav}>
                     <Link to="strings">Cuerdas</Link>
                 </li>
-                <li onClick={handleNav}>
-                    <Link to="profile">Perfil</Link>
-                </li>
-                <li onClick={handleNav}>
-                    <Link to="auth">Iniciar sesión</Link>
-                </li>
+                {loggedIn ? (
+                    <li onClick={handleNav}>
+                        <Link to="profile">Perfil</Link>
+                    </li>
+                ) : (
+                    <li onClick={handleNav}>
+                        <Link to="auth">Iniciar sesión</Link>
+                    </li>
+                )}
                 <li onClick={handleNav}>
                     <Link to="order">Pedido</Link>
                 </li>

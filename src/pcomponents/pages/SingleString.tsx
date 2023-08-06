@@ -19,6 +19,7 @@ const SingleString = () => {
     
     const { id } = useParams();
 
+    //TODO: agregar al carrito del usuario especifico
     const addToCart = (prod: Product) => {
         setCart([...cart, prod])
     }

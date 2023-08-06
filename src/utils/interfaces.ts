@@ -12,3 +12,8 @@ export interface CartContextType {
     cart: Product[];
     setCart: React.Dispatch<React.SetStateAction<Product[]>>;
 }
+
+export interface AuthContextType {
+    loggedIn: boolean;
+    setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
