@@ -101,7 +101,7 @@ const Auth = () => {
                             <Field
                                 name="fullname"
                                 type="text"
-                                style={{ color: "black" }}
+                                style={{ color: "black", borderRadius: "5px" }}
                             />
                             {errors.fullname && touched.fullname && (
                                 <ErrorMessageCustom name="fullname" />
@@ -112,7 +112,7 @@ const Auth = () => {
                             <Field
                                 name="password"
                                 type="text"
-                                style={{ color: "black" }}
+                                style={{ color: "black", borderRadius: "5px" }}
                             />
                             {errors.password && touched.password && (
                                 <ErrorMessageCustom name="password" />
@@ -124,7 +124,7 @@ const Auth = () => {
                                 <Field
                                     name="confirm"
                                     type="text"
-                                    style={{ color: "black" }}
+                                    style={{ color: "black", borderRadius: "5px" }}
                                 />
                                 {errors.confirm && touched.confirm && (
                                     <ErrorMessageCustom name="confirm" />
