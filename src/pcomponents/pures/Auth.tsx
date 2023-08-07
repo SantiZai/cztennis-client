@@ -7,7 +7,7 @@ import { AuthContext } from "@/utils/AuthProvider";
 import { createUser, login } from "@/utils/services";
 import { useToast } from "@/components/ui/use-toast";
 import { User } from "@/utils/interfaces";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface Values {
     fullname: string;
@@ -44,6 +44,8 @@ const Auth = () => {
 
     const { toast } = useToast();
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (
         values: Values,
         { setSubmitting }: FormikHelpers<Values>
@@ -69,6 +71,7 @@ const Auth = () => {
                     setLoggedIn(true);
                     setUser(res.data as User);
                     localStorage.setItem("user", res.data.id);
+                    navigate("/");
                 }
             } catch (err) {
                 console.error(err);
@@ -143,13 +146,11 @@ const Auth = () => {
                                 type="submit"
                                 disabled={isSubmitting}
                             >
-                                <Link to="/">
-                                    {isSubmitting
-                                        ? "submitting"
-                                        : signup
-                                        ? "Registrarse"
-                                        : "Acceder"}
-                                </Link>
+                                {isSubmitting
+                                    ? "submitting"
+                                    : signup
+                                    ? "Registrarse"
+                                    : "Acceder"}
                             </Button>
                             <Button
                                 variant="link"

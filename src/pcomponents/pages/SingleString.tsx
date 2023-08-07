@@ -15,7 +15,9 @@ const SingleString = () => {
 
     //TODO: agregar al carrito del usuario especifico
     const addToCart = async (id: number) => {
-        const updatedCart = cart + "," + id.toString();
+        let updatedCart = "";
+        if (cart === "") updatedCart = id.toString();
+        else updatedCart = cart + "," + id.toString();
         setCart(updatedCart);
         setUser((prevUser) => ({
             ...prevUser,
