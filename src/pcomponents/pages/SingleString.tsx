@@ -1,32 +1,37 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../utils/interfaces";
-import { bringString } from "../../utils/services";
+import { bringString, updateUser } from "../../utils/services";
 import { Button } from "@/components/ui/button";
 import { CartContext } from "@/utils/CartProvider";
+import { AuthContext } from "@/utils/AuthProvider";
 
 const SingleString = () => {
-    const [prod, setProd] = useState<Product>({
-        id: 0,
-        name: "",
-        brand: "",
-        image: "",
-        price: 0,
-        size: 0,
-        stock: 0,
-    });
+    const [prod, setProd] = useState<Product>({} as Product);
     const { cart, setCart } = useContext(CartContext);
-    
+    const { user, setUser } = useContext(AuthContext);
+
     const { id } = useParams();
 
     //TODO: agregar al carrito del usuario especifico
-    const addToCart = (prod: Product) => {
-        setCart([...cart, prod])
-    }
+    const addToCart = async (id: number) => {
+        const updatedCart = cart + "," + id.toString();
+        setCart(updatedCart);
+        setUser((prevUser) => ({
+            ...prevUser,
+            cart: updatedCart,
+        }));
+        await updateUser(user.id, { ...user, cart: updatedCart });
+    };
 
     useEffect(() => {
         bringString(Number(id)).then((res) => setProd(res));
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        console.log(user.cart, user);
+        setCart(user.cart);
+    }, [user.cart]);
 
     //TODO: crear fondo de pelota de tenis en alguna esquina de la pantalla, debe ser distinto segun el tema
     return (
@@ -47,7 +52,9 @@ const SingleString = () => {
                 </div>
             </div>
             <div className="mt-4">
-                <Button onClick={() => addToCart(prod)}>Agregar al carrito</Button>
+                <Button onClick={() => addToCart(prod.id)}>
+                    Agregar al carrito
+                </Button>
             </div>
         </div>
     );

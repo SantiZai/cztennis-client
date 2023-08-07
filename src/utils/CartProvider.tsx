@@ -1,6 +1,13 @@
-import { useState, createContext, ReactNode, useEffect } from "react";
+import {
+    useState,
+    createContext,
+    ReactNode,
+    useEffect,
+    useContext,
+} from "react";
 import { CartContextType } from "./interfaces";
 import { bringUser } from "./services";
+import { AuthContext } from "./AuthProvider";
 
 interface Props {
     children: ReactNode;
@@ -12,15 +19,9 @@ export const CartContext = createContext<CartContextType>({
 });
 
 const CartProvider = (props: Props) => {
-    const [cart, setCart] = useState<string>("");
+    const { user } = useContext(AuthContext);
 
-    useEffect(() => {
-        if (localStorage.getItem("user")) {
-            bringUser(Number(localStorage.getItem("user"))).then((res) =>
-                setCart(res.cart)
-            );
-        }
-    }, [cart]);
+    const [cart, setCart] = useState<string>(user.cart || "");
 
     return (
         <CartContext.Provider value={{ cart, setCart }}>

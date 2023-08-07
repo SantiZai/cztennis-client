@@ -1,4 +1,5 @@
 import axios from "axios";
+import { User } from "./interfaces";
 
 const API = "https://localhost:7226/";
 
@@ -15,6 +16,10 @@ export const bringString = async (id: number) => {
 export const bringUser = async (id: number) => {
     const res = await axios.get(`${API}users/${id}`);
     return res.data;
+};
+
+export const updateUser = async (id: number, user: User) => {
+    return await axios.patch(`${API}users/${id}`, user);
 };
 
 export const login = async (fullname: string, password: string) => {

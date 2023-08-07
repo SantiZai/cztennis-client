@@ -7,6 +7,7 @@ import { AuthContext } from "@/utils/AuthProvider";
 import { createUser, login } from "@/utils/services";
 import { useToast } from "@/components/ui/use-toast";
 import { User } from "@/utils/interfaces";
+import { Link } from "react-router-dom";
 
 interface Values {
     fullname: string;
@@ -64,7 +65,7 @@ const Auth = () => {
             try {
                 const res = await login(values.fullname, values.password);
                 if ((res.status = 200)) {
-                    console.log(res.data)
+                    console.log(res.data);
                     setLoggedIn(true);
                     setUser(res.data as User);
                     localStorage.setItem("user", res.data.id);
@@ -142,11 +143,13 @@ const Auth = () => {
                                 type="submit"
                                 disabled={isSubmitting}
                             >
-                                {isSubmitting
-                                    ? "submitting"
-                                    : signup
-                                    ? "Registrarse"
-                                    : "Acceder"}
+                                <Link to="/">
+                                    {isSubmitting
+                                        ? "submitting"
+                                        : signup
+                                        ? "Registrarse"
+                                        : "Acceder"}
+                                </Link>
                             </Button>
                             <Button
                                 variant="link"

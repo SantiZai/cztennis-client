@@ -21,11 +21,13 @@ const AuthProvider = (props: Props) => {
 
     useEffect(() => {
         if (Boolean(localStorage.getItem("user"))) {
-            bringUser(Number(localStorage.getItem("user"))).then((res) =>
-                setUser(res)
-            );
+            bringUser(Number(localStorage.getItem("user"))).then((res) => {
+                setUser(res);
+                setLoggedIn(true);
+            });
         } else {
             setUser({} as User);
+            setLoggedIn(false);
         }
     }, [loggedIn]);
 

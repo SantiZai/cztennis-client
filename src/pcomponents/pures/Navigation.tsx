@@ -68,7 +68,7 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                             spacing="topBottom"
                             onClick={logOut}
                         >
-                            <Link to="auth">Cerrar sesión</Link>
+                            <Link to="/">Cerrar sesión</Link>
                         </Button>
                     </div>
                 </div>
