@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Product } from "../../utils/interfaces";
 import { bringString, updateUser } from "../../utils/services";
 import { Button } from "@/components/ui/button";
@@ -13,17 +13,21 @@ const SingleString = () => {
 
     const { id } = useParams();
 
-    //TODO: agregar al carrito del usuario especifico
+    const navigate = useNavigate();
+
     const addToCart = async (id: number) => {
-        let updatedCart = "";
-        if (cart === "") updatedCart = id.toString();
-        else updatedCart = cart + "," + id.toString();
-        setCart(updatedCart);
-        setUser((prevUser) => ({
-            ...prevUser,
-            cart: updatedCart,
-        }));
-        await updateUser(user.id, { ...user, cart: updatedCart });
+        // Comprueba que haya un usuario para agregar productos al carrito, de lo contrario te hace iniciar sesión
+        if (user.fullName) {
+            let updatedCart = "";
+            if (cart === "") updatedCart = id.toString();
+            else updatedCart = cart + "," + id.toString();
+            setCart(updatedCart);
+            setUser((prevUser) => ({
+                ...prevUser,
+                cart: updatedCart,
+            }));
+            await updateUser(user.id, { ...user, cart: updatedCart });
+        } else navigate("/auth");
     };
 
     useEffect(() => {
@@ -31,7 +35,6 @@ const SingleString = () => {
     }, [id]);
 
     useEffect(() => {
-        console.log(user.cart, user);
         setCart(user.cart);
     }, [user.cart]);
 
