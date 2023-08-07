@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { ModeToggle } from "@/components/mode-toggle";
-import "../../navbar.css";
 import { useContext } from "react";
 import { AuthContext } from "@/utils/AuthProvider";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import "../../navbar.css";
 
 interface Props {
     isOpen: boolean;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Navigation = ({ isOpen, handleNav }: Props) => {
-    const { loggedIn, setLoggedIn } = useContext(AuthContext);
+    const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
 
     const logOut = () => {
         handleNav();
@@ -56,9 +56,9 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                 <div className="w-full flex flex-col items-start gap-4">
                     <div className="flex flex-col items-start gap-1">
                         <Avatar>
-                            <AvatarImage src="https://i.pinimg.com/280x280_RS/52/da/85/52da850c6903a93646c6a3bc1dc2729a.jpg"></AvatarImage>
+                            <AvatarImage src="https://i.pinimg.com/280x280_RS/52/da/85/52da850c6903a93646c6a3bc1dc2729a.jpg" />
                         </Avatar>
-                        <span>Nombre</span>
+                        <span className="text-sm font-bold w-10">{user.fullName}</span>
                     </div>
                     {/* TODO: corregir que al hacer click cerca del boton se ejecuta el onClick (capaz creando un componente para el boton puede funcionar) */}
                     <div>

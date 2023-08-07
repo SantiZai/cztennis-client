@@ -12,6 +12,11 @@ export const bringString = async (id: number) => {
     return res.data;
 };
 
+export const bringUser = async (id: number) => {
+    const res = await axios.get(`${API}users/${id}`);
+    return res.data;
+};
+
 export const login = async (fullname: string, password: string) => {
     return await axios.post(`${API}users/login`, { fullname, password });
 };
@@ -21,7 +26,7 @@ export const createUser = async (fullname: string, password: string) => {
         fullname: fullname,
         password: password,
         isAdmin: false,
-    }
+    };
 
     return await axios.post(`${API}users`, newUser);
-}
+};

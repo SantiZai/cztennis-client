@@ -1,3 +1,25 @@
+enum STATUS {
+    Pendiente,
+    Pagado,
+    Cancelado,
+}
+
+export interface User {
+    id: number;
+    fullName: string;
+    password: string;
+    isAdmin: boolean;
+    orders: Order[];
+    cart: string;
+}
+
+export interface Order {
+    id: number;
+    user_id: number;
+    strung_id: number;
+    status: STATUS;
+}
+
 export interface Product {
     id: number;
     name: string;
@@ -9,11 +31,13 @@ export interface Product {
 }
 
 export interface CartContextType {
-    cart: Product[];
-    setCart: React.Dispatch<React.SetStateAction<Product[]>>;
+    cart: string;
+    setCart: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface AuthContextType {
     loggedIn: boolean;
     setLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+    user: User;
+    setUser: React.Dispatch<React.SetStateAction<User>>;
 }

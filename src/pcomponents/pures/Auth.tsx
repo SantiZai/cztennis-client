@@ -6,6 +6,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "@/utils/AuthProvider";
 import { createUser, login } from "@/utils/services";
 import { useToast } from "@/components/ui/use-toast";
+import { User } from "@/utils/interfaces";
 
 interface Values {
     fullname: string;
@@ -38,7 +39,7 @@ const getSchema = (signup: boolean) => {
 const Auth = () => {
     const [signup, setSignup] = useState<boolean>(false);
 
-    const { setLoggedIn } = useContext(AuthContext);
+    const { setLoggedIn, setUser } = useContext(AuthContext);
 
     const { toast } = useToast();
 
@@ -63,7 +64,9 @@ const Auth = () => {
             try {
                 const res = await login(values.fullname, values.password);
                 if ((res.status = 200)) {
+                    console.log(res.data)
                     setLoggedIn(true);
+                    setUser(res.data as User);
                     localStorage.setItem("user", res.data.id);
                 }
             } catch (err) {
@@ -124,7 +127,10 @@ const Auth = () => {
                                 <Field
                                     name="confirm"
                                     type="text"
-                                    style={{ color: "black", borderRadius: "5px" }}
+                                    style={{
+                                        color: "black",
+                                        borderRadius: "5px",
+                                    }}
                                 />
                                 {errors.confirm && touched.confirm && (
                                     <ErrorMessageCustom name="confirm" />

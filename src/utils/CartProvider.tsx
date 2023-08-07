@@ -1,17 +1,26 @@
-import { useState, createContext, ReactNode } from "react";
-import { CartContextType, Product } from "./interfaces";
+import { useState, createContext, ReactNode, useEffect } from "react";
+import { CartContextType } from "./interfaces";
+import { bringUser } from "./services";
 
 interface Props {
     children: ReactNode;
 }
 
 export const CartContext = createContext<CartContextType>({
-    cart: [],
+    cart: "",
     setCart: () => {},
 });
 
 const CartProvider = (props: Props) => {
-    const [cart, setCart] = useState<Product[]>([]);
+    const [cart, setCart] = useState<string>("");
+
+    useEffect(() => {
+        if (localStorage.getItem("user")) {
+            bringUser(Number(localStorage.getItem("user"))).then((res) =>
+                setCart(res.cart)
+            );
+        }
+    }, [cart]);
 
     return (
         <CartContext.Provider value={{ cart, setCart }}>
