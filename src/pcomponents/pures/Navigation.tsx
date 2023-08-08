@@ -12,6 +12,9 @@ interface Props {
 }
 
 const Navigation = ({ isOpen, handleNav }: Props) => {
+    /**
+     * Los links tienen que hacer handleNav
+     */
     const { loggedIn, setLoggedIn, user } = useContext(AuthContext);
 
     const logOut = () => {
@@ -33,22 +36,22 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                 <h2>logo</h2>
             </div>
             <ul className="w-full h-1/3 flex flex-col items-start gap-3">
-                <li onClick={handleNav}>
+                <li /* onClick={handleNav} */>
                     <Link to="/">Inicio</Link>
                 </li>
-                <li onClick={handleNav}>
+                <li /* onClick={handleNav} */>
                     <Link to="strings">Cuerdas</Link>
                 </li>
                 {loggedIn ? (
-                    <li onClick={handleNav}>
+                    <li /* onClick={handleNav} */>
                         <Link to="">Perfil</Link>
                     </li>
                 ) : (
-                    <li onClick={handleNav}>
+                    <li /* onClick={handleNav} */>
                         <Link to="">Iniciar sesión</Link>
                     </li>
                 )}
-                <li onClick={handleNav}>
+                <li /* onClick={handleNav} */>
                     <Link to="">Pedido</Link>
                 </li>
             </ul>
@@ -58,7 +61,9 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                         <Avatar>
                             <AvatarImage src="https://i.pinimg.com/280x280_RS/52/da/85/52da850c6903a93646c6a3bc1dc2729a.jpg" />
                         </Avatar>
-                        <span className="text-sm font-bold w-10">{user.fullName}</span>
+                        <span className="text-sm font-bold w-10">
+                            {user.fullName}
+                        </span>
                     </div>
                     {/* TODO: corregir que al hacer click cerca del boton se ejecuta el onClick (capaz creando un componente para el boton puede funcionar) */}
                     <div>
