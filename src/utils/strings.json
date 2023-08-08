@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "name": "Max power",
+        "brand": "Kirschbaum",
+        "size": 1.3,
+        "image": "https://i.imgur.com/puK96Pv.png"
+    },
+    {
+        "id": 2,
+        "name": "Max power",
+        "brand": "Kirschbaum",
+        "size": 1.3,
+        "image": "https://i.imgur.com/puK96Pv.png"
+    }
+]

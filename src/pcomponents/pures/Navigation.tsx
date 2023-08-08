@@ -41,15 +41,15 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
                 </li>
                 {loggedIn ? (
                     <li onClick={handleNav}>
-                        <Link to="profile">Perfil</Link>
+                        <Link to="">Perfil</Link>
                     </li>
                 ) : (
                     <li onClick={handleNav}>
-                        <Link to="auth">Iniciar sesión</Link>
+                        <Link to="">Iniciar sesión</Link>
                     </li>
                 )}
                 <li onClick={handleNav}>
-                    <Link to="order">Pedido</Link>
+                    <Link to="">Pedido</Link>
                 </li>
             </ul>
             {loggedIn && (

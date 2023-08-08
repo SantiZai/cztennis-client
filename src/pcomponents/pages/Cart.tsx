@@ -31,8 +31,8 @@ const Cart = () => {
     }, [cart]);
 
     /**TODO:
-     * Mostrar productos
-     * Implementar lógica de pago
+     * Implementar lógica de pago con mercado pago
+     * Puedo hacer una página nueva o mostrar de una el botón de mp
      * Crear la orden y gestionar su estado
      */
     return (

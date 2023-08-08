@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { bringStrings } from "../../utils/services";
-import { Product } from "../../utils/interfaces";
+//import { bringStrings } from "../../utils/services";
+//import { Product } from "../../utils/interfaces";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,24 +9,38 @@ import {
     CardFooter,
     CardHeader,
 } from "@/components/ui/card";
+import strs from "../../utils/strings.json";
+
+export interface ProdVarian {
+    id: number;
+    name: string;
+    brand: string;
+    size: number;
+    image: string;
+}
 
 const Strings = () => {
-    const [strings, setStrings] = useState<Product[]>([]);
+    /**
+     * Usar las funcionalidades para pedir los datos al back
+     * Mostrar precio y calibre
+     */
+    const [strings, setStrings] = useState<ProdVarian[]>([] as ProdVarian[]);
 
     useEffect(() => {
-        bringStrings().then((res) => setStrings(res));
+        //bringStrings().then((res) => setStrings(res));
+        setStrings(strs)
     }, []);
 
     return (
         <div className="w-full h-full flex">
-            <div className="flex flex-col px-4">
+            <div className="w-full flex flex-col px-4">
                 <h2 className="text-center text-3xl font-bold my-5">
                     Cuerdas
                     <br />
                     disponibles
                 </h2>
                 <div className="w-full flex flex-col justify-center items-center gap-6">
-                    {strings.map((prod: Product) => {
+                    {strings.map((prod: ProdVarian) => {
                         return (
                             <Card
                                 key={prod.id}
@@ -42,7 +56,7 @@ const Strings = () => {
                                         src={prod.image}
                                         className="w-2/3"
                                     />
-                                    <div className="w-2/3 flex justify-between font-semibold">
+                                    {/* <div className="w-2/3 flex justify-between font-semibold">
                                         <div>
                                             <span>$</span>
                                             <span className="text-xl">
@@ -52,12 +66,12 @@ const Strings = () => {
                                         <span className="text-xl">
                                             {prod.size}
                                         </span>
-                                    </div>
+                                    </div> */}
                                 </CardContent>
                                 <CardFooter>
                                     <Button>
                                         <Link to={prod.id.toString()}>
-                                            View
+                                            Ver más
                                         </Link>
                                     </Button>
                                 </CardFooter>
