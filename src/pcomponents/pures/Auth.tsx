@@ -67,7 +67,6 @@ const Auth = () => {
             try {
                 const res = await login(values.fullname, values.password);
                 if ((res.status = 200)) {
-                    console.log(res.data);
                     setLoggedIn(true);
                     setUser(res.data as User);
                     localStorage.setItem("user", res.data.id);

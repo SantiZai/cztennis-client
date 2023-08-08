@@ -13,6 +13,11 @@ export const bringString = async (id: number) => {
     return res.data;
 };
 
+export const bringProductsInCart = async (ids: string) => {
+    const res = await axios.get(`${API}strungs/cart?prods=${ids}`);
+    return res.data;
+};
+
 export const bringUser = async (id: number) => {
     const res = await axios.get(`${API}users/${id}`);
     return res.data;

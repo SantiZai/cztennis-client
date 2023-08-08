@@ -33,9 +33,9 @@ const Strings = () => {
                                 className="w-2/3 flex flex-col items-center gap-4"
                             >
                                 <CardHeader>
-                                    <h2 className="text-center text-lg font-semibold">
+                                    <span className="text-center text-lg font-semibold">
                                         {prod.name}
-                                    </h2>
+                                    </span>
                                 </CardHeader>
                                 <CardContent className="flex flex-col items-center">
                                     <img
