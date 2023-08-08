@@ -37,39 +37,43 @@ const Cart = () => {
      */
     return (
         <div className="h-full w-full flex flex-col justify-center items-center gap-2">
-            {prods.map((prod: Product) => {
-                return (
-                    <Card
-                        key={prod.id}
-                        className="w-3/4 mx-auto flex flex-col justify-end pt-1"
-                    >
-                        <CardContent className="flex items-center">
-                            <div className="w-1/3 flex flex-col items-start justify-center">
-                                <span className="text-md font-bold">
-                                    {prod.name}
-                                </span>
-                                <span className="text-sm font-semibold">
-                                    {prod.brand}
-                                </span>
-                            </div>
-                            <div className="w-1/3 flex flex-col items-end justify-center">
-                                <span>${prod.price}</span>
-                                <div className="flex items-center">
-                                    <span>{prod.size}</span>
-                                    <span className="text-xs font-semibold">
-                                        mm
+            {cart !== "" ? (
+                prods.map((prod: Product) => {
+                    return (
+                        <Card
+                            key={prod.id}
+                            className="w-3/4 mx-auto flex flex-col justify-end pt-1"
+                        >
+                            <CardContent className="flex items-center">
+                                <div className="w-1/3 flex flex-col items-start justify-center">
+                                    <span className="text-md font-bold">
+                                        {prod.name}
+                                    </span>
+                                    <span className="text-sm font-semibold">
+                                        {prod.brand}
                                     </span>
                                 </div>
-                            </div>
-                            <div className="w-1/4 flex items-end justify-end">
-                                <span onClick={() => removeToCart(prod.id)}>
-                                    X
-                                </span>
-                            </div>
-                        </CardContent>
-                    </Card>
-                );
-            })}
+                                <div className="w-1/3 flex flex-col items-end justify-center">
+                                    <span>${prod.price}</span>
+                                    <div className="flex items-center">
+                                        <span>{prod.size}</span>
+                                        <span className="text-xs font-semibold">
+                                            mm
+                                        </span>
+                                    </div>
+                                </div>
+                                <div className="w-1/4 flex items-end justify-end">
+                                    <span onClick={() => removeToCart(prod.id)}>
+                                        X
+                                    </span>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    );
+                })
+            ) : (
+                <div>No hay productos en el carrito</div>
+            )}
         </div>
     );
 };
