@@ -12,12 +12,34 @@ const NavBar = () => {
     return (
         <div className="w-full flex flex-col text-center">
             <div className="w-full flex justify-between">
-                <div
+                <input
+                    id="checkbox"
+                    type="checkbox"
+                    onClick={handleOpen}
+                />
+                <label
+                    className="toggle m-2"
+                    htmlFor="checkbox"
+                >
+                    <div
+                        id="bar1"
+                        className="bars"
+                    ></div>
+                    <div
+                        id="bar2"
+                        className="bars"
+                    ></div>
+                    <div
+                        id="bar3"
+                        className="bars"
+                    ></div>
+                </label>
+                {/* <div
                     className="handle-nav flex justify-end my-2 mx-3 p-4"
                     onClick={handleOpen}
                 >
                     <h2>X</h2>
-                </div>
+                </div> */}
             </div>
             <Navigation
                 isOpen={isOpen}
