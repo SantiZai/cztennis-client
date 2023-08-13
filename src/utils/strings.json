@@ -3,14 +3,49 @@
         "id": 1,
         "name": "Max power",
         "brand": "Kirschbaum",
-        "size": 1.3,
+        "size": [1.3, 1.25, 1.2],
         "image": "https://i.imgur.com/puK96Pv.png"
     },
     {
         "id": 2,
-        "name": "Max power",
+        "name": "Competition",
         "brand": "Kirschbaum",
+        "size": 1.25,
+        "image": "https://i.imgur.com/LQXwWwf.png"
+    },
+    {
+        "id": 3,
+        "name": "Pro Last",
+        "brand": "Babolat",
+        "size": 1.25,
+        "image": "https://i.imgur.com/v3L8yex.png"
+    },
+    {
+        "id": 4,
+        "name": "Pro Line Rough",
+        "brand": "Kirschbaum",
+        "size": 1.25,
+        "image": "https://i.imgur.com/Hml00jB.png"
+    },
+    {
+        "id": 5,
+        "name": "Poly Fire",
+        "brand": "Solinco",
         "size": 1.3,
-        "image": "https://i.imgur.com/puK96Pv.png"
+        "image": "https://i.imgur.com/3sB2n4n.png"
+    },
+    {
+        "id": 6,
+        "name": "Xplosive Speed",
+        "brand": "Kirschbaum",
+        "size": 1.33,
+        "image": "https://i.imgur.com/UDp3njz.png"
+    },
+    {
+        "id": 7,
+        "name": "Touch Multifibre",
+        "brand": "Kirschbaum",
+        "size": 1.30,
+        "image": "https://i.imgur.com/3kgceG3.png"
     }
 ]
