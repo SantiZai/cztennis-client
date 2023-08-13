@@ -15,7 +15,7 @@ export interface ProdVarian {
     id: number;
     name: string;
     brand: string;
-    size: number;
+    size: number[];
     image: string;
 }
 
@@ -28,7 +28,7 @@ const Strings = () => {
 
     useEffect(() => {
         //bringStrings().then((res) => setStrings(res));
-        setStrings(strs)
+        setStrings(strs);
     }, []);
 
     return (
@@ -69,11 +69,18 @@ const Strings = () => {
                                     </div> */}
                                 </CardContent>
                                 <CardFooter>
-                                    <Button>
-                                        <Link to={prod.id.toString()}>
-                                            Ver más
-                                        </Link>
-                                    </Button>
+                                    <div className="flex flex-col">
+                                        <div className="flex justify-center gap-2 mb-2">
+                                            {prod.size.map((size, i) => {
+                                                return <span key={i} className="font-semibold">{size}</span>;
+                                            })}
+                                        </div>
+                                        <Button>
+                                            <Link to={prod.id.toString()}>
+                                                Ver más
+                                            </Link>
+                                        </Button>
+                                    </div>
                                 </CardFooter>
                             </Card>
                         );
