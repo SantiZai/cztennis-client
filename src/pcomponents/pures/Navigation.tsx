@@ -32,10 +32,11 @@ const Navigation = ({ isOpen, handleNav }: Props) => {
             <div className="w-full flex pt-4">
                 <ModeToggle />
             </div>
-            <div className="w-full h-1/3 flex justify-between items-center">
+            {/* <div className="w-full h-1/3 flex justify-between items-center">
                 <h2>logo</h2>
-            </div>
-            <ul className="w-full h-1/3 flex flex-col items-start gap-3">
+            </div> */}
+            {/* TODO: Sacar el justify y poner h-1/3 */}
+            <ul className="w-full h-2/3 flex flex-col items-start justify-center gap-3">
                 <li /* onClick={handleNav} */>
                     <Link to="/">Inicio</Link>
                 </li>

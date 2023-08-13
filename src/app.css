@@ -3,9 +3,9 @@
 }
 
 .home-dark {
-    background-image: url("bg-home-light.svg");
+    background-image: url("../bg-home-light.svg");
 }
 
 .home-light {
-    background-image: url("bg-home-dark.svg");
+    background-image: url("../bg-home-dark.svg");
 }

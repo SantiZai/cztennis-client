@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
-import axios from "axios";
+//import { useState } from "react";
+//import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+//import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Product } from "../../utils/interfaces";
 

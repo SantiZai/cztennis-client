@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 //import { Product } from "../../utils/interfaces";
 //import { bringString, updateUser } from "../../utils/services";
 import { Button } from "@/components/ui/button";
