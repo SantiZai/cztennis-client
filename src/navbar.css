@@ -35,8 +35,6 @@
     position: absolute;
     right: 0;
     z-index: 1;
-    /**/
-    /*position: relative;*/
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -56,10 +54,6 @@
     transition-duration: 0.3s;
 }
 
-/* #checkbox:checked + .toggle .bars {
-    margin-left: 13px;
-  } */
-
 #checkbox:checked + .toggle #bar2 {
     transform: translateY(14px) rotate(60deg);
     margin-left: 0;
@@ -78,8 +72,3 @@
 #checkbox:checked + .toggle {
     transform: rotate(-90deg);
 }
-/* #checkbox:checked + .toggle #bar3 {
-    transform: rotate(90deg);
-    transition-duration: .3s;
-    transform-origin:right;
-  } */

@@ -9,3 +9,10 @@
 .home-light {
     background-image: url("../bg-home-dark.svg");
 }
+
+.container-wpp {
+    width: 60px;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}

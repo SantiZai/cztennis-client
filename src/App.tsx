@@ -11,6 +11,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import CartProvider from "./utils/CartProvider";
 import AuthProvider from "./utils/AuthProvider";
 import { Toaster } from "./components/ui/toaster";
+import wpp from "/whatsapp.png";
+import "./app.css";
 
 const App = () => {
     return (
@@ -57,6 +59,13 @@ const App = () => {
                                     element={<Navigate to="not-found" />}
                                 />
                             </Routes>
+                            <button
+                                className="container-wpp"
+                            >
+                                <a href="https://wa.me/+5492474407650?text=Hola!%20Quisiera%20encordar%20mi%20raqueta!">
+                                    <img src={wpp} />
+                                </a>
+                            </button>
                         </div>
                     </BrowserRouter>
                     <Toaster />
